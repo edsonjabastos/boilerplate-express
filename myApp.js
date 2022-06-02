@@ -1,5 +1,4 @@
 let express = require("express");
-const req = require("express/lib/request");
 require("dotenv").config();
 let app = express();
 
