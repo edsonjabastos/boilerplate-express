@@ -26,6 +26,17 @@ app.get(
   }
 );
 
+app.get(
+  "/:word/echo",
+  function (req, res, next) {
+    word = req.params.word;
+    next();
+  },
+  function (req, res) {
+    res.json({ echo: word });
+  }
+);
+
 app.get("/", function (req, res) {
   res.sendFile(absolutePath);
 });
