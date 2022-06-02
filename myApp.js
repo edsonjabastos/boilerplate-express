@@ -37,6 +37,27 @@ app.get(
   }
 );
 
+app.get(
+  "/name",
+  function (req, res, next) {
+    query = req.query;
+    next();
+  },
+  function (req, res) {
+    res.json({ name: query });
+  }
+);
+
+// app.route("/name2").get(
+//   function (req, res, next) {
+//     query = req.query;
+//     next();
+//   },
+//   function (req, res) {
+//     res.json({ name2: query });
+//   }
+// );
+
 app.get("/", function (req, res) {
   res.sendFile(absolutePath);
 });
