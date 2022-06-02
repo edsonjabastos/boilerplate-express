@@ -44,7 +44,7 @@ app.get(
     next();
   },
   function (req, res) {
-    res.json({ name: 'firstname lastname' });
+    res.json({ name: query.first + " " + query.last });
   }
 );
 
