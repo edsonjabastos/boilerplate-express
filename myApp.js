@@ -41,10 +41,12 @@ app.get(
   "/name",
   function (req, res, next) {
     query = req.query;
+    first = query.first;
+    last = query.last;
     next();
   },
   function (req, res) {
-    res.json({ name: query.first + " " + query.last });
+    res.json({ name: `${first} ${last}` });
   }
 );
 
