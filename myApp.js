@@ -1,10 +1,17 @@
 let express = require("express");
+let bodyParser = require("body-parser")
 require("dotenv").config();
 let app = express();
 
 absolutePath = __dirname + "/views/index.html";
 
 staticServed = express.static(__dirname + "/public");
+
+bpurl = bodyParser.urlencoded({extended: false})
+
+app.use(bpurl)
+
+console.log(bpurl)
 
 app.use("/public", staticServed);
 
@@ -53,10 +60,12 @@ app.get(
 // app.route("/name2").get(
 //   function (req, res, next) {
 //     query = req.query;
+//     first = query.first;
+//     last = query.last;
 //     next();
 //   },
 //   function (req, res) {
-//     res.json({ name2: query });
+//     res.json({ name2: `${first} ${last}` });
 //   }
 // );
 
