@@ -1,4 +1,5 @@
 let express = require("express");
+const req = require("express/lib/request");
 let app = express();
 
 absolutePath = __dirname + "/views/index.html"
@@ -10,6 +11,10 @@ app.use("/public", staticServed)
 app.get("/", function (req, res) {
     res.sendFile(absolutePath)
 });
+
+app.get("/json", function(req, res) {
+    res.json({"message": "Hello json"})
+})
 
 console.log("Hello World");
 
