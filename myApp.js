@@ -8,6 +8,13 @@ staticServed = express.static(__dirname + "/public");
 
 app.use("/public", staticServed);
 
+app.use(function middleware(req, res, next) {
+  console.log("I'm a middleware...");
+  var string = req.method + " " + req.path + " - " + req.ip;
+  console.log(string);
+  next();
+});
+
 app.get("/", function (req, res) {
   res.sendFile(absolutePath);
 });
