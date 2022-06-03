@@ -1,5 +1,5 @@
 let express = require("express");
-let bodyParser = require("body-parser")
+let bodyParser = require("body-parser");
 require("dotenv").config();
 let app = express();
 
@@ -7,11 +7,11 @@ absolutePath = __dirname + "/views/index.html";
 
 staticServed = express.static(__dirname + "/public");
 
-bpurl = bodyParser.urlencoded({extended: false})
+bpurl = bodyParser.urlencoded({ extended: false });
 
-app.use(bpurl)
+app.use(bpurl);
 
-console.log(bpurl)
+console.log(bpurl);
 
 app.use("/public", staticServed);
 
@@ -21,6 +21,21 @@ app.use(function middleware(req, res, next) {
   console.log(string);
   next();
 });
+
+app.post(
+  "/name",
+  function (req, res, next) {
+    body = req.body;
+    first = body.first;
+    last = body.last;
+    console.log(req.body.first);
+    console.log(req.body.last);
+    next();
+  },
+  function (req, res) {
+    res.json({ name: `${first} ${last}` });
+  }
+);
 
 app.get(
   "/now",
@@ -57,17 +72,17 @@ app.get(
   }
 );
 
-// app.route("/name2").get(
-//   function (req, res, next) {
-//     query = req.query;
-//     first = query.first;
-//     last = query.last;
-//     next();
-//   },
-//   function (req, res) {
-//     res.json({ name2: `${first} ${last}` });
-//   }
-// );
+app.route("/name2").get(
+  function (req, res, next) {
+    query = req.query;
+    first = query.first;
+    last = query.last;
+    next();
+  },
+  function (req, res) {
+    res.json({ name2: `${first} ${last}` });
+  }
+);
 
 app.get("/", function (req, res) {
   res.sendFile(absolutePath);
